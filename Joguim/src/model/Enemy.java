@@ -157,5 +157,16 @@ public class Enemy {
 	public void setCurseResist(float curseResist) {
 		this.curseResist = curseResist;
 	}
-
+	
+	public void damageEnemy (Enemy enemy, Equipment equipment ) {
+        if(enemy.getName().equals("Zumbie")) {
+            enemy.setDamage(1900 * enemy.getLevel()/100);
+        }else if(enemy.getName().equals("Ice Wolf")) {
+            enemy.setDamage(1800 * enemy.getLevel()/100);
+        }else if(enemy.getName().equals("Blood Golem")) {
+            enemy.setDamage(1600 * enemy.getLevel()/100);
+        }else if(enemy.getName().equals("Spider")) {
+            enemy.setDamage(1800 * enemy.getLevel()/100);
+        }
+    }
 }

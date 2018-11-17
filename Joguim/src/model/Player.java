@@ -215,4 +215,33 @@ public class Player {
 		
 		System.out.println("Você está descansado.");
 	}
+	
+	public void damagePlayer(Player player, Equipment equipment) {
+		int chaceCritico = (int) (Math.random() * 9);
+		if(player.getVocation().equals("Warrior")){
+			if (chaceCritico == 9) {
+				player.setDamage((player.getStr() + player.getAgility() + equipment.getDamage()) / 3 * 2);
+			} else {
+				player.setDamage((player.getStr() + player.getAgility() + equipment.getDamage()) / 3);
+			}
+		} else if (player.getVocation().equals("Archer")) {
+			if (chaceCritico == 9) {
+				player.setDamage((player.getStr()+player.getAgility()+equipment.getDamage())/3*2);
+			}else {
+				player.setDamage((player.getStr()+player.getAgility()+equipment.getDamage())/3);
+			}
+		}else if (player.getVocation().equals("Mage")) {
+			if (chaceCritico == 9) {
+				player.setDamage((player.getIntelligence()+player.getAgility()+equipment.getDamage())/3*2);
+			}else {
+				player.setDamage((player.getIntelligence()+player.getAgility()+equipment.getDamage())/3);
+			}
+		}else if (player.getVocation().equals("Cleric")) {
+			if (chaceCritico == 9) {
+				player.setDamage((player.getAgility()+player.getFaith()+equipment.getDamage())/3*2);
+			}else {
+				player.setDamage((player.getAgility()+player.getFaith()+equipment.getDamage())/3);
+			}
+		}
+	}
 }

@@ -1,7 +1,15 @@
 package model;
 
 public class Event {
+	public void battleResult (Enemy enemy, Player player) {
+        double calculo;
+        enemy.getLevel();
+        calculo = enemy.getLevel() * 2.5;
+        player.setExp(player.getExp() + calculo);
 
+        levelUp(player);
+	}
+	
 	public void levelUp(Player player) {
 		if (player.getExp() == 100) {
 			player.setLevel(2);
