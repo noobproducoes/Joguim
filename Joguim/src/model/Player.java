@@ -8,9 +8,12 @@ public class Player {
 	private int level = 1;
 	private double exp = 0;
 	private String vocation;
+	private double gold;
 	//PROFILE STATUS
-	private int health;
-	private int mana;
+	private float health;
+	private float maxHealth;
+	private float mana;
+	private float maxMana;
 	private float damage;
 	private float defense;
 	private int evasion;
@@ -60,16 +63,16 @@ public class Player {
 	public void setVocation(String vocation) {
 		this.vocation = vocation;
 	}
-	public int getHealth() {
+	public float getHealth() {
 		return health;
 	}
-	public void setHealth(int health) {
+	public void setHealth(float health) {
 		this.health = health;
 	}
-	public int getMana() {
+	public float getMana() {
 		return mana;
 	}
-	public void setMana(int mana) {
+	public void setMana(float mana) {
 		this.mana = mana;
 	}
 	public int getStr() {
@@ -185,5 +188,31 @@ public class Player {
 	}
 	public void setQuests(ArrayList<Integer> quests) {
 		this.quests = quests;
+	}
+	public float getMaxHealth() {
+		return maxHealth;
+	}
+	public void setMaxHealth(float maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+	public float getMaxMana() {
+		return maxMana;
+	}
+	public void setMaxMana(float maxMana) {
+		this.maxMana = maxMana;
+	}
+	public double getGold() {
+		return gold;
+	}
+	public void setGold(double gold) {
+		this.gold = gold;
+	}
+	
+	public void rest(Player player) {
+		player.health = player.maxHealth;
+		player.mana = player.maxMana;
+		player.gold = player.gold - 10;
+		
+		System.out.println("Você está descansado.");
 	}
 }

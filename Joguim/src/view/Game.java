@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 
+import controller.Util;
 import model.Player;
 
 public class Game {
@@ -34,12 +35,12 @@ public class Game {
 			if (optMenu == 1) {
 				if (!dificultyDone) {
 					System.out.println("BORA! HORA DO SHOW!!");
-					System.out.println("Escolha a dificuldade:");
 					System.out.println("1 - Fácil.");
 					System.out.println("2 - Normal.");
 					System.out.println("3 - Difícil.");
 					System.out.println("4 - Cancelar.");
 					try {
+						System.out.print("Escolha a dificuldade: ");
 						optDifficulty = scan.nextInt();
 					} catch (Exception e) {
 						System.out.println("Dificuldade inválida. Digite apenas o número.");
@@ -54,16 +55,16 @@ public class Game {
 					//INSTANCIAR CLASSE DE EVENTOS
 					
 					System.out.print("Qual será o seu nome? ");
-					String nome = "";
+					String nome = scan.next().trim();
 					if (nome.trim() != "" && nome != null) {
-						player.setName(scan.next().trim());
+						player.setName(nome);
 					}
-					System.out.println("Escolha sua vocação: "
-							+ "1 - Warrior"
-							+ "2 - Mage"
-							+ "3 - Archer"
-							+ "4 - Cleric"
-							+ "5 - Cancelar.");
+					System.out.println("Escolha sua vocação: ");
+					System.out.println(" 1 - Warrior"
+								+ " 2 - Mage"
+								+ " 3 - Archer"
+								+ " 4 - Cleric"
+								+ " 5 - Cancelar.");
 					System.out.print("Faça sua escolha: ");
 					int voc = -1;
 					
@@ -77,7 +78,9 @@ public class Game {
 					if (voc == 1) {
 						player.setVocation("Warrior");
 						player.setHealth(150);
+						player.setMaxHealth(150);
 						player.setMana(15);
+						player.setMaxMana(15);
 						player.setStr(20);
 						player.setAgility(10);
 						player.setIntelligence(5);
@@ -103,7 +106,9 @@ public class Game {
 					} else if (voc == 2) {
 						player.setVocation("Mage");
 						player.setHealth(80);
+						player.setMaxHealth(80);
 						player.setMana(50);
+						player.setMaxMana(50);
 						player.setStr(5);
 						player.setAgility(10);
 						player.setIntelligence(20);
@@ -129,7 +134,9 @@ public class Game {
 					} else if (voc == 3) {
 						player.setVocation("Archer");
 						player.setHealth(100);
+						player.setMaxHealth(100);
 						player.setMana(25);
+						player.setMaxMana(25);
 						player.setStr(10);
 						player.setAgility(20);
 						player.setIntelligence(10);
@@ -155,7 +162,9 @@ public class Game {
 					} else if (voc == 4) {
 						player.setVocation("Cleric");
 						player.setHealth(110);
+						player.setMaxHealth(110);
 						player.setMana(35);
+						player.setMaxMana(35);
 						player.setStr(15);
 						player.setAgility(10);
 						player.setIntelligence(10);
@@ -181,10 +190,30 @@ public class Game {
 					} else if (voc == 5){
 						characterDone = false;
 					} else {
-						System.out.println("Vocação inválida. Digite apenas o número.");
+						System.out.println("Vocação inválida 2. Digite apenas o número.");
 						characterDone = false;
 					}
 					//INICIAR O JOGO
+					Util util = new Util();
+					
+					util.showStats(player);
+					int optTavern = util.tavernMenu(player);
+					
+					if (optTavern == 1) {
+						
+					} else if (optTavern == 2) {
+						
+					} else if (optTavern == 3) {
+						
+					} else if (optTavern == 4) {
+						
+					} else if (optTavern == 5) {
+						
+					} else if (optTavern == 6) {
+						break;
+					} else {
+						System.out.println("Opção da taverna inválida. Digite apenas o número.");
+					}
 					
 				} else if (optDifficulty == 2 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
