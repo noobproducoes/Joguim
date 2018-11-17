@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Player {
 	//GENERAL INFO
 	private String name;
-	private int level;
-	private double exp;
+	private int level = 1;
+	private double exp = 0;
 	private String vocation;
 	//PROFILE STATUS
 	private int health;
