@@ -82,6 +82,7 @@ public class Game {
 						player.setAgility(10);
 						player.setIntelligence(5);
 						player.setEndurance(15);
+						player.setFaith(0);
 						//TEMPORARIO
 							player.setDamage(10);
 							player.setDefense(20);
@@ -106,10 +107,11 @@ public class Game {
 						player.setStr(5);
 						player.setAgility(10);
 						player.setIntelligence(20);
-						player.setEndurance(10);
+						player.setEndurance(8);
+						player.setFaith(0);
 						//TEMPORARIO
 							player.setDamage(13);
-							player.setDefense(10);
+							player.setDefense(5);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
 						//FIM TEMPORARIO
@@ -125,15 +127,65 @@ public class Game {
 						
 						System.out.println("Você escolheu a vocação: Mage.");
 					} else if (voc == 3) {
+						player.setVocation("Archer");
+						player.setHealth(100);
+						player.setMana(25);
+						player.setStr(10);
+						player.setAgility(20);
+						player.setIntelligence(10);
+						player.setEndurance(10);
+						player.setFaith(0);
+						//TEMPORARIO
+							player.setDamage(15);
+							player.setDefense(10);
+							player.setEvasion(10);
+							player.setCriticalChance(10);
+						//FIM TEMPORARIO
+						player.setFireResist(0);
+						player.setPoisonResist(0);
+						player.setBleedResist(0);
+						player.setIceResist(0);
+						player.setLightningResist(0);
+						player.setPhysicalResist(0);
+						player.setCurseResist(0);
 						
+						characterDone = true;
+						
+						System.out.println("Você escolheu a vocação: Archer.");
 					} else if (voc == 4) {
+						player.setVocation("Cleric");
+						player.setHealth(110);
+						player.setMana(35);
+						player.setStr(15);
+						player.setAgility(10);
+						player.setIntelligence(10);
+						player.setEndurance(12);
+						player.setFaith(20);
+						//TEMPORARIO
+							player.setDamage(12);
+							player.setDefense(12);
+							player.setEvasion(7);
+							player.setCriticalChance(10);
+						//FIM TEMPORARIO
+						player.setFireResist(0);
+						player.setPoisonResist(0);
+						player.setBleedResist(0);
+						player.setIceResist(0);
+						player.setLightningResist(0);
+						player.setPhysicalResist(0);
+						player.setCurseResist(0);
 						
+						characterDone = true;
+						
+						System.out.println("Você escolheu a vocação: Cleric.");
 					} else if (voc == 5){
 						characterDone = false;
 					} else {
 						System.out.println("Vocação inválida. Digite apenas o número.");
 						characterDone = false;
 					}
+					//INICIAR O JOGO
+					
 				} else if (optDifficulty == 2 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
 				} else if (optDifficulty == 3 && !characterDone) {
@@ -142,9 +194,9 @@ public class Game {
 					dificultyDone = false;
 				} else {
 					System.out.println("Opção inválida. Digite apenas o número.");
-				}				
+				}
 			} else if (optMenu == 2) {
-				
+				//IMPLEMENTAR LOAD
 			} else if (optMenu == 3) {
 				System.out.println("Até logo!");
 				break;
