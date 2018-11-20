@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
+import model.Enemy;
 import model.Player;
 
 public class Util {
@@ -12,6 +13,15 @@ public class Util {
 		System.out.println("Damage: " + player.getDamage());
 		System.out.println("Defense: " + player.getDefense());
 		System.out.println("************************************************************");
+	}
+	
+	public void showEnemyStats(Enemy mob) {
+		System.out.println("************************STATUS DO INIMIGO******************************");
+		System.out.println("Health: " + mob.getHealth() + "     Max Health: " + mob.getMaxHealth());
+		System.out.println("Mana: " + mob.getMana() + "     Max Mana: " + mob.getMaxMana());
+		System.out.println("Damage: " + mob.getDamage());
+		System.out.println("Defense: " + mob.getDefense());
+		System.out.println("***********************************************************************");
 	}
 	
 	public int tavernMenu(Player player) {

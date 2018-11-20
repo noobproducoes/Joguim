@@ -216,6 +216,36 @@ public class Player {
 		System.out.println("Você está descansado.");
 	}
 	
+	public boolean run(Player player) {
+		float runChance = (float) Math.random();
+		
+		if (runChance <= 0.4) {
+			System.out.println("Você fugiu.");
+			return true;
+		} else {
+			player.setDefense(player.getDefense() - (player.getDefense() * 0.5f));
+			System.out.println("Você falhou em fugir e abriu sua guarda, perdendo 50% de sua defesa.");
+			return false;
+		}
+	}
+	
+	public void attack(Player player, Enemy mob) {
+		float dodge = (float) Math.random();
+		if (dodge == (mob.getEvasion() / 100)) {
+			System.out.println("O inimigo esquivou de seu ataque!");
+		} else {
+			float crit = (float) Math.random();
+			if (crit == (player.getCriticalChance() / 100)) {
+				mob.setHealth(mob.getHealth() - ((player.getDamage() * 2) - mob.getDefense()));
+				System.out.print("Você acertou um dano critico!");
+				System.out.println("Você causou " + ((player.getDamage() * 2) - mob.getDefense()) + " de dano.");
+			} else {
+				mob.setHealth(mob.getHealth() - (player.getDamage() - mob.getDefense()));
+				System.out.println("Você causou " + (player.getDamage() - mob.getDefense()) + " de dano.");
+			}
+		}
+	}
+	
 	public void damagePlayer(Player player, Equipment equipment) {
 		int chaceCritico = (int) (Math.random() * 9);
 		if(player.getVocation().equals("Warrior")){

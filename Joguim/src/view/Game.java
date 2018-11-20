@@ -1,8 +1,11 @@
+
 package view;
 
 import java.util.Scanner;
 
 import controller.Util;
+import model.Enemy;
+import model.Event;
 import model.Player;
 
 public class Game {
@@ -87,7 +90,7 @@ public class Game {
 						player.setEndurance(15);
 						player.setFaith(0);
 						//TEMPORARIO
-							player.setDamage(10);
+							player.setDamage(15);
 							player.setDefense(20);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
@@ -200,16 +203,31 @@ public class Game {
 					int optTavern = util.tavernMenu(player);
 					
 					if (optTavern == 1) {
+						int fightCount = 3;
 						
+						while (fightCount > 0) {
+							Event ev = new Event();
+							Enemy mob = ev.spawnMob(player.getLevel());
+							
+							System.out.println("Você se deparou com um " + mob.getName() + "!");
+							//util.showEnemyStats(mob);
+							//util.showStats(player);
+							
+							
+						}
 					} else if (optTavern == 2) {
-						
+						player.rest(player);
 					} else if (optTavern == 3) {
-						
+						//SALVAR PROGRESSO
+						break;
 					} else if (optTavern == 4) {
-						
+						//CHAMAR METODO DE QUESTS
+						break;
 					} else if (optTavern == 5) {
-						
+						//CHAMAR METODO DA LOJA
+						break;
 					} else if (optTavern == 6) {
+						System.out.println("Até logo!");
 						break;
 					} else {
 						System.out.println("Opção da taverna inválida. Digite apenas o número.");
@@ -217,12 +235,15 @@ public class Game {
 					
 				} else if (optDifficulty == 2 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
+					break;
 				} else if (optDifficulty == 3 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
+					break;
 				} else if (optDifficulty == 4 && !characterDone) {
 					dificultyDone = false;
 				} else {
 					System.out.println("Opção inválida. Digite apenas o número.");
+					break;
 				}
 			} else if (optMenu == 2) {
 				//IMPLEMENTAR LOAD
@@ -231,6 +252,7 @@ public class Game {
 				break;
 			} else {
 				System.out.println("Opção inválida. Digite apenas o número.");
+				break;
 			}
 		}
 		scan.close();
