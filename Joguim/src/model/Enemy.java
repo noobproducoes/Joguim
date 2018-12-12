@@ -182,26 +182,30 @@ public class Enemy {
 			System.out.println("Você esquivou do ataque!");
 		} else {
 			float crit = (float) Math.random();
-			if (crit == (mob.getCriticalChance() / 100)) {
+			if (crit <= (mob.getCriticalChance() / 100)) {
 				player.setHealth(player.getHealth() - ((mob.getDamage() * 2) - player.getDefense()));
 				System.out.print("Você tomou um dano critico!");
 				System.out.println("Você tomou " + ((mob.getDamage() * 2) - player.getDefense()) + " de dano.");
 			} else {
-				player.setHealth(player.getHealth() - (mob.getDamage() - player.getDefense()));
-				System.out.println("Você tomou " + (mob.getDamage() - player.getDefense()) + " de dano.");
+				if ((mob.getDamage() - player.getDefense()) < 0) {
+					System.out.println("Você anulou o ataque!");
+				} else {
+	 				player.setHealth(player.getHealth() - (mob.getDamage() - player.getDefense()));
+					System.out.println("Você tomou " + (mob.getDamage() - player.getDefense()) + " de dano.");
+				}
 			}
 		}
 	}
 	
 	public void damageEnemy (Enemy enemy, Equipment equipment ) {
 		if(enemy.getName().equals("Zombie")) {
-			enemy.setDamage(1900*enemy.getLevel()/100);
+			enemy.setDamage(29*enemy.getLevel());
 		}else if(enemy.getName().equals("Ice Wolf")) {
-			enemy.setDamage(1800*enemy.getLevel()/100);
+			enemy.setDamage(28*enemy.getLevel());
 		}else if(enemy.getName().equals("Blood Golem")) {
-			enemy.setDamage(1600*enemy.getLevel()/100);
+			enemy.setDamage(26*enemy.getLevel());
 		}else if(enemy.getName().equals("Spider")) {
-			enemy.setDamage(1800*enemy.getLevel()/100);
+			enemy.setDamage(28*enemy.getLevel());
 		}
 	}
 	

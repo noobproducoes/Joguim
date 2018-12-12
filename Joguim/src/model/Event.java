@@ -5,21 +5,18 @@ import java.util.Scanner;
 import controller.Util;
 
 public class Event {
-	//Scanner scanner = new Scanner(System.in);
-	
 	public Enemy spawnMob(int level) {
 		Enemy mob = new Enemy();
 		
 		mob.setName("Zombie");
 		mob.setLevel(level);
-		//mob.damageEnemy(mob, null);
-		mob.setDamage(100);
+		mob.damageEnemy(mob, null);
 		mob.setDefense(5);
 		mob.setHealth(100);
 		mob.setMaxHealth(100);
 		mob.setMana(0);
 		mob.setEvasion(0);
-		mob.setCriticalChance(10);		
+		mob.setCriticalChance(10);	
 		
 		return mob;
 	}
@@ -30,7 +27,7 @@ public class Event {
 		int optCombate = -1;
 		
 		while (player.getHealth() > 0 || mob.getHealth() > 0) {			
-			System.out.println("*************TURNO " + turno + "*************");
+			System.out.println("************************TURNO " + turno + "************************");
 			util.showEnemyStats(mob);
 			System.out.println("");
 			util.showStats(player);

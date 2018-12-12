@@ -252,9 +252,9 @@ public class Player {
 			System.out.println("O inimigo esquivou de seu ataque!");
 		} else {
 			float crit = (float) Math.random();
-			if (crit == (player.getCriticalChance() / 100)) {
+			if (crit <= (player.getCriticalChance() / 100)) {
 				mob.setHealth(mob.getHealth() - ((player.getDamage() * 2) - mob.getDefense()));
-				System.out.print("Você acertou um dano critico!");
+				System.out.println("Você acertou um dano critico!");
 				System.out.println("Você causou " + ((player.getDamage() * 2) - mob.getDefense()) + " de dano.");
 			} else {
 				mob.setHealth(mob.getHealth() - (player.getDamage() - mob.getDefense()));
@@ -294,9 +294,14 @@ public class Player {
 	
 	public boolean playerDeath(Player player) {
 		if (player.getHealth() <= 0) {
-			System.out.println("Você morreu.");
+			System.out.println("Você morreu. " + (player.getExp() * 0.1) + " pontos de experiência foram perdidos.");
+			if (player.getExp() >= (player.getExp() * 0.1)) {
+				player.setExp(player.getExp() - (player.getExp() * 0.1));
+			} else {
+				player.setExp(0);
+			}			
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

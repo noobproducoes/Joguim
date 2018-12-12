@@ -127,6 +127,7 @@ public class Game {
 						}
 						
 						System.out.println("Você escolheu a vocação: Warrior.");
+						System.out.println("");
 					} else if (voc == 2) {
 						player.setVocation("Mage");
 						player.setHealth(80);
@@ -162,6 +163,7 @@ public class Game {
 						}
 						
 						System.out.println("Você escolheu a vocação: Mage.");
+						System.out.println("");
 					} else if (voc == 3) {
 						player.setVocation("Archer");
 						player.setHealth(100);
@@ -197,6 +199,7 @@ public class Game {
 						}
 						
 						System.out.println("Você escolheu a vocação: Archer.");
+						System.out.println("");
 					} else if (voc == 4) {
 						player.setVocation("Cleric");
 						player.setHealth(110);
@@ -232,6 +235,7 @@ public class Game {
 						}
 						
 						System.out.println("Você escolheu a vocação: Cleric.");
+						System.out.println("");
 					} else if (voc == 5){
 						characterDone = false;
 					} else {
@@ -242,17 +246,22 @@ public class Game {
 					while (!exit) {
 						Util util = new Util();
 						
-						util.showStats(player);
-						System.out.println("");
-						
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+						if (player.getHealth() > 0) {
+							util.showStats(player);
+							System.out.println("");
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 						
-						int optTavern = util.tavernMenu(player, scanInt);
-						System.out.println("Aguarde...");
+						int optTavern = -1;
+						
+						if (player.getHealth() > 0) {
+							optTavern = util.tavernMenu(player, scanInt);
+							System.out.println("Aguarde...");
+						}
 						
 						if (optTavern == 1) {
 							int fightCount = 3;
@@ -275,12 +284,26 @@ public class Game {
 									e.printStackTrace();
 								}
 								ev.battle(player, mob, scanInt);
+								player.setDefense(player.getBaseDefense());
+								fightCount--;
 							}
 							fightCount = 3;
 							
 							if (player.getHealth() <= 0) {
-								player.setHealth(player.getMaxHealth());
-								player.setDefense(player.getBaseDefense());
+								int continuar = -1;
+								
+								System.out.print("Deseja continuar jogando? 1 - Sim / 2 - Não: ");
+								continuar = scanInt.nextInt();
+								
+								if (continuar == 1) {
+									player.setHealth(player.getMaxHealth());
+									player.setDefense(player.getBaseDefense());
+								} else if (continuar == 2) {
+									exit = true;
+									break;
+								} else {
+									System.out.println("Opção inválida.");
+								}
 							}
 							
 						} else if (optTavern == 2) {
@@ -311,6 +334,7 @@ public class Game {
 				} else if (optDifficulty == 4 && !characterDone) {
 					dificultyDone = false;
 				} else if (exit) {
+					System.out.println("Fim de jogo.");
 					break;
 				} else {
 					System.out.println("Opção inválida. Digite apenas o número.");
