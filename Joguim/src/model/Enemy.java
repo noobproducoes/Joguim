@@ -204,5 +204,16 @@ public class Enemy {
 			enemy.setDamage(1800*enemy.getLevel()/100);
 		}
 	}
-
+	
+	public boolean enemyDeath(Enemy mob, Player player) {
+		Event ev = new Event();
+		
+		if (mob.getHealth() <= 0) {
+			System.out.println("Inimigo abatido!");
+			ev.battleResult(mob, player);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
