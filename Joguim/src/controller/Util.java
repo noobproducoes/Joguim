@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import model.Enemy;
 import model.Player;
-//TESTE BRANCH
+
 public class Util {
 	public void showStats(Player player) {
 		System.out.println("************************STATUS******************************");
@@ -24,8 +24,7 @@ public class Util {
 		System.out.println("***********************************************************************");
 	}
 	
-	public int tavernMenu(Player player) {
-		Scanner scan = new Scanner(System.in);
+	public int tavernMenu(Player player, Scanner scan) {
 		int choice = -1;
 		
 		System.out.println("O que deseja fazer hoje, Sr. " + player.getName() + "?");
@@ -38,7 +37,6 @@ public class Util {
 		} catch (Exception e) {
 			System.out.println("Digite apenas o número. Erro na taverna.");
 		}
-		scan.close();
 		
 		return choice;
 	}

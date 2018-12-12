@@ -14,10 +14,11 @@ public class Game {
 	private static boolean menuDone = false;
 	private static boolean dificultyDone = false;
 	private static boolean characterDone = false;
+	private static boolean exit = false;
+	public static Scanner scanInt = new Scanner(System.in);
+	public static Scanner scanStr = new Scanner(System.in);
 	
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		
+	public static void main(String[] args) {		
 		while (true) {
 			if (!menuDone) {
 				System.out.println("Bem-vindo ao Joguim!");
@@ -27,7 +28,8 @@ public class Game {
 				System.out.println("3 - Sair.");
 				System.out.print("Faça sua escolha: ");
 				try {
-					optMenu = scan.nextInt();
+					optMenu = scanInt.nextInt();
+					System.out.println("Aguarde...");
 				} catch (Exception e) {
 					System.out.println("Opção inválida. Digite apenas o número.");
 					menuDone = false;
@@ -36,6 +38,11 @@ public class Game {
 			}
 			
 			if (optMenu == 1) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				if (!dificultyDone) {
 					System.out.println("BORA! HORA DO SHOW!!");
 					System.out.println("1 - Fácil.");
@@ -44,7 +51,8 @@ public class Game {
 					System.out.println("4 - Cancelar.");
 					try {
 						System.out.print("Escolha a dificuldade: ");
-						optDifficulty = scan.nextInt();
+						optDifficulty = scanInt.nextInt();
+						System.out.println("Aguarde...");
 					} catch (Exception e) {
 						System.out.println("Dificuldade inválida. Digite apenas o número.");
 						dificultyDone = false; 
@@ -55,10 +63,15 @@ public class Game {
 				if (optDifficulty == 1 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
 					Player player = new Player();
-					//INSTANCIAR CLASSE DE EVENTOS
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					
 					System.out.print("Qual será o seu nome? ");
-					String nome = scan.next().trim();
+					String nome = scanStr.next().trim();
 					if (nome.trim() != "" && nome != null) {
 						player.setName(nome);
 					}
@@ -72,7 +85,8 @@ public class Game {
 					int voc = -1;
 					
 					try {
-						voc = scan.nextInt();
+						voc = scanInt.nextInt();
+						System.out.println("Aguarde...");
 					} catch (Exception e) {
 						System.out.println("Vocação inválida. Digite apenas o número.");
 						characterDone = false;
@@ -92,6 +106,7 @@ public class Game {
 						//TEMPORARIO
 							player.setDamage(15);
 							player.setDefense(20);
+							player.setBaseDefense(20);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
 						//FIM TEMPORARIO
@@ -104,6 +119,12 @@ public class Game {
 						player.setCurseResist(0);
 						
 						characterDone = true;
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						
 						System.out.println("Você escolheu a vocação: Warrior.");
 					} else if (voc == 2) {
@@ -120,6 +141,7 @@ public class Game {
 						//TEMPORARIO
 							player.setDamage(13);
 							player.setDefense(5);
+							player.setBaseDefense(5);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
 						//FIM TEMPORARIO
@@ -132,6 +154,12 @@ public class Game {
 						player.setCurseResist(0);
 						
 						characterDone = true;
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						
 						System.out.println("Você escolheu a vocação: Mage.");
 					} else if (voc == 3) {
@@ -148,6 +176,7 @@ public class Game {
 						//TEMPORARIO
 							player.setDamage(15);
 							player.setDefense(10);
+							player.setBaseDefense(10);
 							player.setEvasion(10);
 							player.setCriticalChance(10);
 						//FIM TEMPORARIO
@@ -160,6 +189,12 @@ public class Game {
 						player.setCurseResist(0);
 						
 						characterDone = true;
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						
 						System.out.println("Você escolheu a vocação: Archer.");
 					} else if (voc == 4) {
@@ -176,6 +211,7 @@ public class Game {
 						//TEMPORARIO
 							player.setDamage(12);
 							player.setDefense(12);
+							player.setBaseDefense(12);
 							player.setEvasion(7);
 							player.setCriticalChance(10);
 						//FIM TEMPORARIO
@@ -189,50 +225,83 @@ public class Game {
 						
 						characterDone = true;
 						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
 						System.out.println("Você escolheu a vocação: Cleric.");
 					} else if (voc == 5){
 						characterDone = false;
 					} else {
-						System.out.println("Vocação inválida 2. Digite apenas o número.");
+						System.out.println("Vocação inválida. Digite apenas o número.");
 						characterDone = false;
 					}
 					//INICIAR O JOGO
-					Util util = new Util();
-					
-					util.showStats(player);
-					int optTavern = util.tavernMenu(player);
-					
-					if (optTavern == 1) {
-						int fightCount = 3;
+					while (!exit) {
+						Util util = new Util();
 						
-						while (fightCount > 0) {
-							Event ev = new Event();
-							Enemy mob = ev.spawnMob(player.getLevel());
-							
-							System.out.println("Você se deparou com um " + mob.getName() + "!");
-							//util.showEnemyStats(mob);
-							//util.showStats(player);
-							
-							
+						util.showStats(player);
+						System.out.println("");
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
-					} else if (optTavern == 2) {
-						player.rest(player);
-					} else if (optTavern == 3) {
-						//SALVAR PROGRESSO
-						break;
-					} else if (optTavern == 4) {
-						//CHAMAR METODO DE QUESTS
-						break;
-					} else if (optTavern == 5) {
-						//CHAMAR METODO DA LOJA
-						break;
-					} else if (optTavern == 6) {
-						System.out.println("Até logo!");
-						break;
-					} else {
-						System.out.println("Opção da taverna inválida. Digite apenas o número.");
+						
+						int optTavern = util.tavernMenu(player, scanInt);
+						System.out.println("Aguarde...");
+						
+						if (optTavern == 1) {
+							int fightCount = 3;
+							
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+							while (fightCount > 0 && player.getHealth() > 0) {
+								Event ev = new Event();
+								Enemy mob = ev.spawnMob(player.getLevel());
+								
+								System.out.println("Você se deparou com um " + mob.getName() + "!");
+								
+								try {
+									Thread.sleep(1500);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								ev.battle(player, mob, scanInt);
+							}
+							fightCount = 3;
+							
+							if (player.getHealth() <= 0) {
+								player.setHealth(player.getMaxHealth());
+								player.setDefense(player.getBaseDefense());
+							}
+							
+						} else if (optTavern == 2) {
+							player.rest(player);
+						} else if (optTavern == 3) {
+							//SALVAR PROGRESSO
+							break;
+						} else if (optTavern == 4) {
+							//CHAMAR METODO DE QUESTS
+							break;
+						} else if (optTavern == 5) {
+							//CHAMAR METODO DA LOJA
+							break;
+						} else if (optTavern == 6) {
+							System.out.println("Até logo!");
+							exit = true;
+							break;
+						} else {
+							System.out.println("Opção da taverna inválida. Digite apenas o número.");
+						}
 					}
-					
 				} else if (optDifficulty == 2 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
 					break;
@@ -241,6 +310,8 @@ public class Game {
 					break;
 				} else if (optDifficulty == 4 && !characterDone) {
 					dificultyDone = false;
+				} else if (exit) {
+					break;
 				} else {
 					System.out.println("Opção inválida. Digite apenas o número.");
 					break;
@@ -255,6 +326,7 @@ public class Game {
 				break;
 			}
 		}
-		scan.close();
+		scanInt.close();
+		scanStr.close();
 	}
 }

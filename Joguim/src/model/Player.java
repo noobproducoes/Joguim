@@ -15,6 +15,7 @@ public class Player {
 	private float mana;
 	private float maxMana;
 	private float damage;
+	private float baseDefense;
 	private float defense;
 	private int evasion;
 	private int criticalChance;
@@ -206,6 +207,12 @@ public class Player {
 	}
 	public void setGold(double gold) {
 		this.gold = gold;
+	}	
+	public float getBaseDefense() {
+		return baseDefense;
+	}
+	public void setBaseDefense(float baseDefense) {
+		this.baseDefense = baseDefense;
 	}
 	
 	public void rest(Player player) {
@@ -221,10 +228,20 @@ public class Player {
 		
 		if (runChance <= 0.4) {
 			System.out.println("Você fugiu.");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			return true;
 		} else {
 			player.setDefense(player.getDefense() - (player.getDefense() * 0.5f));
 			System.out.println("Você falhou em fugir e abriu sua guarda, perdendo 50% de sua defesa.");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			return false;
 		}
 	}
@@ -247,31 +264,45 @@ public class Player {
 	}
 	
 	public void damagePlayer(Player player, Equipment equipment) {
-		int chaceCritico = (int) (Math.random() * 9);
+		int chanceCritico = (int) (Math.random() * 9);
 		if(player.getVocation().equals("Warrior")){
-			if (chaceCritico == 9) {
+			if (chanceCritico == 9) {
 				player.setDamage((player.getStr() + player.getAgility() + equipment.getDamage()) / 3 * 2);
 			} else {
 				player.setDamage((player.getStr() + player.getAgility() + equipment.getDamage()) / 3);
 			}
 		} else if (player.getVocation().equals("Archer")) {
-			if (chaceCritico == 9) {
+			if (chanceCritico == 9) {
 				player.setDamage((player.getStr()+player.getAgility()+equipment.getDamage())/3*2);
 			}else {
 				player.setDamage((player.getStr()+player.getAgility()+equipment.getDamage())/3);
 			}
 		}else if (player.getVocation().equals("Mage")) {
-			if (chaceCritico == 9) {
+			if (chanceCritico == 9) {
 				player.setDamage((player.getIntelligence()+player.getAgility()+equipment.getDamage())/3*2);
 			}else {
 				player.setDamage((player.getIntelligence()+player.getAgility()+equipment.getDamage())/3);
 			}
 		}else if (player.getVocation().equals("Cleric")) {
-			if (chaceCritico == 9) {
+			if (chanceCritico == 9) {
 				player.setDamage((player.getAgility()+player.getFaith()+equipment.getDamage())/3*2);
 			}else {
 				player.setDamage((player.getAgility()+player.getFaith()+equipment.getDamage())/3);
 			}
+		}
+	}
+	
+	public boolean playerDeath(Player player) {
+		if (player.getHealth() <= 0) {
+			System.out.println("Você morreu.");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
