@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import controller.Util;
 import model.Enemy;
+import model.Equipment;
 import model.Event;
 import model.Player;
 
@@ -63,6 +64,7 @@ public class Game {
 				if (optDifficulty == 1 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
 					Player player = new Player();
+					Equipment equip = new Equipment();
 					
 					try {
 						Thread.sleep(1000);
@@ -109,6 +111,8 @@ public class Game {
 							player.setBaseDefense(20);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
+							player.setWeapon(equip.addItem("Wooden sword","sword",100f ));
+							player.setShield(equip.addItem("Wooden Shield", "Shield", 5f, 1f, 1f, 1f, 1f, 1f, 1f, 1f));
 						//FIM TEMPORARIO
 						player.setFireResist(0);
 						player.setPoisonResist(0);

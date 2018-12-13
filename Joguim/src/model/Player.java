@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Player {
 	// GENERAL INFO
@@ -39,7 +38,12 @@ public class Player {
 	private float curseResist;
 	private ArrayList<Integer> quests = new ArrayList<Integer>();
 	// equipamento
-	private List<Equipment> equips = new ArrayList<Equipment>();
+	private Equipment weapon;
+	private Equipment shield;
+	private Equipment armor;
+	private Equipment helm;
+	private Equipment legs;
+	private Equipment boot;
 
 	public String getName() {
 		return name;
@@ -272,14 +276,54 @@ public class Player {
 	public void setBaseDefense(float baseDefense) {
 		this.baseDefense = baseDefense;
 	}
-	
-	
-	public List<Equipment> getEquips() {
-		return equips;
+
+
+	public Equipment getWeapon() {
+		return weapon;
 	}
 
-	public void setEquips(List<Equipment> equips) {
-		this.equips = equips;
+	public void setWeapon(Equipment weapon) {
+		this.weapon = weapon;
+	}
+
+	public Equipment getShield() {
+		return shield;
+	}
+
+	public void setShield(Equipment shield) {
+		this.shield = shield;
+	}
+
+	public Equipment getArmor() {
+		return armor;
+	}
+
+	public void setArmor(Equipment armor) {
+		this.armor = armor;
+	}
+
+	public Equipment getHelm() {
+		return helm;
+	}
+
+	public void setHelm(Equipment helm) {
+		this.helm = helm;
+	}
+
+	public Equipment getLegs() {
+		return legs;
+	}
+
+	public void setLegs(Equipment legs) {
+		this.legs = legs;
+	}
+
+	public Equipment getBoot() {
+		return boot;
+	}
+
+	public void setBoot(Equipment boot) {
+		this.boot = boot;
 	}
 
 	public void rest(Player player) {
@@ -314,7 +358,7 @@ public class Player {
 	}
 
 	public void attack(Player player, Enemy mob) {
-		damagePlayer (player, null);
+		damagePlayer (player);
 		float dodge = (float) Math.random();
 		if (dodge == (mob.getEvasion() / 100)) {
 			System.out.println("O inimigo esquivou de seu ataque!");
@@ -331,18 +375,18 @@ public class Player {
 		}
 	}
 
-	public void damagePlayer(Player player, Equipment equipment) {
+	public void damagePlayer(Player player) {
 		if (player.getVocation().equals("Warrior")) {
-			player.setDamage((player.getStr() + player.getAgility() + player.getDamage()) / 3);
+			player.setDamage((player.getStr() + player.getAgility() + player.getDamage() + player.getWeapon().getDamage()) / 3);
 
 		} else if (player.getVocation().equals("Archer")) {
-			player.setDamage((player.getStr() + player.getAgility() + equipment.getDamage()) / 3);
+			player.setDamage((player.getStr() + player.getAgility()) / 3);
 
 		} else if (player.getVocation().equals("Mage")) {
-			player.setDamage((player.getIntelligence() + player.getAgility() + equipment.getDamage()) / 3);
+			player.setDamage((player.getIntelligence() + player.getAgility()) / 3);
 
 		} else if (player.getVocation().equals("Cleric")) {
-			player.setDamage((player.getAgility() + player.getFaith() + equipment.getDamage()) / 3);
+			player.setDamage((player.getAgility() + player.getFaith()) / 3);
 		}
 	}
 

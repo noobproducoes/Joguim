@@ -90,13 +90,19 @@ public class Equipment {
 		this.curseResist = curseResist;
 	}
 	
-	public void addItem (String name, String type, float damage, float defense) {
+	public Equipment addItem (String name, String type, float damage) {
+		Equipment equip = new Equipment();
+		
 			this.name = name;
 			this.type = type;
 			this.damage = damage;
+			
+		    return equip;
 	}
 
-	public void addItem (String name, String type, float defense, float fireResist, float poisonResist, float lightningResist, float iceResist, float physicalResist, float bleedResist, float curseResist) {
+	public Equipment addItem (String name, String type, float defense, float fireResist, float poisonResist, float lightningResist, float iceResist, float physicalResist, float bleedResist, float curseResist) {
+		Equipment equip = new Equipment();
+		
 		this.name = name;
 		this.type = type;
 		this.defense = defense;
@@ -107,6 +113,8 @@ public class Equipment {
 		this.physicalResist = physicalResist;
 		this.bleedResist = bleedResist;
 		this.curseResist = curseResist;
+		
+		return equip;
 	}
 	
 }
