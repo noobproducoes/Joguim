@@ -37,6 +37,23 @@ public class Util {
 		} catch (Exception e) {
 			System.out.println("Digite apenas o número. Erro na taverna.");
 		}
+		return choice;
+	}
+	
+	public int lojaMenu(Scanner scan) {
+		int choice = -1;
+		
+		System.out.println("************************LOJA******************************");
+		System.out.println("1 - Poção de Vida(50g).");
+		System.out.println("2 - Poção de Mana(35g).");
+		System.out.println("3 - Sair.");
+		System.out.print("Vai comprar o que? ");
+		
+		try {
+			choice = scan.nextInt();
+		} catch (Exception e) {
+			System.out.println("Digite apenas o número. Erro na loja.");
+		}
 		
 		return choice;
 	}

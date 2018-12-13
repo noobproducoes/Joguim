@@ -272,6 +272,7 @@ public class Game {
 								e.printStackTrace();
 							}
 							
+							//INICIA UMA BATALHA
 							while (fightCount > 0 && player.getHealth() > 0) {
 								Event ev = new Event();
 								Enemy mob = ev.spawnMob(player.getLevel());
@@ -289,6 +290,7 @@ public class Game {
 							}
 							fightCount = 3;
 							
+							//ACIONADO QUANDO O PLAYER MORRE
 							if (player.getHealth() <= 0) {
 								int continuar = -1;
 								
@@ -315,8 +317,29 @@ public class Game {
 							//CHAMAR METODO DE QUESTS
 							break;
 						} else if (optTavern == 5) {
-							//CHAMAR METODO DA LOJA
-							break;
+							//LOJA
+							while (true) {
+								int optLoja = util.lojaMenu(scanInt);
+								
+								if (optLoja == 1) {
+									if (player.getGold() >= 50) {
+										player.setGold(player.getGold() - 50);
+										//ADICIONA 1 POÇÃO DE HP
+										System.out.println("Você comprou Poção de Vida(1x).");
+									}
+								} else if (optLoja == 2) {
+									if (player.getGold() >= 35) {
+										player.setGold(player.getGold() - 35);
+										//ADICIONA 1 POÇÃO DE MANA
+										System.out.println("Você comprou Poção de Mana(1x).");
+									}
+								} else if (optLoja == 3) {
+									System.out.println("Volte sempre!");
+									break;
+								} else {
+									System.out.println("Opção inválida.");
+								}
+							}							
 						} else if (optTavern == 6) {
 							System.out.println("Até logo!");
 							exit = true;
