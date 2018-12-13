@@ -90,4 +90,23 @@ public class Equipment {
 		this.curseResist = curseResist;
 	}
 	
+	public void addItem (String name, String type, float damage, float defense) {
+			this.name = name;
+			this.type = type;
+			this.damage = damage;
+	}
+
+	public void addItem (String name, String type, float defense, float fireResist, float poisonResist, float lightningResist, float iceResist, float physicalResist, float bleedResist, float curseResist) {
+		this.name = name;
+		this.type = type;
+		this.defense = defense;
+		this.fireResist = fireResist;
+		this.poisonResist = poisonResist;
+		this.lightningResist = lightningResist;
+		this.iceResist = iceResist;
+		this.physicalResist = physicalResist;
+		this.bleedResist = bleedResist;
+		this.curseResist = curseResist;
+	}
+	
 }

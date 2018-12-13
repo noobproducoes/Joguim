@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 	// GENERAL INFO
@@ -37,7 +38,8 @@ public class Player {
 	private float bleedResist;
 	private float curseResist;
 	private ArrayList<Integer> quests = new ArrayList<Integer>();
-	// equipamentos
+	// equipamento
+	private List<Equipment> equips = new ArrayList<Equipment>();
 
 	public String getName() {
 		return name;
@@ -269,6 +271,15 @@ public class Player {
 
 	public void setBaseDefense(float baseDefense) {
 		this.baseDefense = baseDefense;
+	}
+	
+	
+	public List<Equipment> getEquips() {
+		return equips;
+	}
+
+	public void setEquips(List<Equipment> equips) {
+		this.equips = equips;
 	}
 
 	public void rest(Player player) {
