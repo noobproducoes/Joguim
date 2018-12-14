@@ -3,6 +3,7 @@ package controller;
 import java.util.Scanner;
 
 import model.Enemy;
+import model.Item;
 import model.Player;
 
 public class Util {
@@ -38,6 +39,21 @@ public class Util {
 			System.out.println("Digite apenas o número. Erro na taverna.");
 		}
 		return choice;
+	}
+	
+	public void usePotion(Player player) {
+		for (Item potions : player.getInventory()) {
+			if (potions.getItemId() == 5 && potions.getHeal() > 0) {
+				player.setHealth(player.getHealth() + potions.getHeal());
+				System.out.println("Você recuperou " + potions.getHeal() + " de vida.");
+				potions.setQtd(potions.getQtd() - 1);
+			} if (potions.getItemId() == 5 && potions.getRestoreMana() > 0) {
+				player.setMana(player.getMana() + potions.getRestoreMana());
+				System.out.println("Você recuperou " + potions.getRestoreMana() + " de mana.");
+				potions.setQtd(potions.getQtd() - 1);
+			}
+			break;
+		}
 	}
 	
 	public int lojaMenu(Scanner scan) {

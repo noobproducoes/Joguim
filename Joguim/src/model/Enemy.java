@@ -64,7 +64,7 @@ public class Enemy {
 		this.mana = mana;
 	}
 
-	public float getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 
@@ -104,7 +104,7 @@ public class Enemy {
 		this.status = status;
 	}
 
-	public float getFireResist() {
+	public int getFireResist() {
 		return fireResist;
 	}
 
@@ -152,7 +152,7 @@ public class Enemy {
 		this.bleedResist = bleedResist;
 	}
 
-	public float getCurseResist() {
+	public int getCurseResist() {
 		return curseResist;
 	}
 
@@ -199,7 +199,7 @@ public class Enemy {
 		}
 	}
 	
-	public void damageEnemy (Enemy enemy, Equipment equipment ) {
+	public void damageEnemy (Enemy enemy, Item equipment ) {
 		if(enemy.getName().equals("Zombie")) {
 			enemy.setDamage(29*enemy.getLevel());
 		}else if(enemy.getName().equals("Ice Wolf")) {

@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import controller.Util;
 import model.Enemy;
-import model.Equipment;
 import model.Event;
+import model.Item;
 import model.Player;
 
 public class Game {
@@ -64,7 +64,7 @@ public class Game {
 				if (optDifficulty == 1 && !characterDone) {
 					//INSERIR MODIFICADORES DE DIFICULDADE
 					Player player = new Player();
-					Equipment equip = new Equipment();
+					Item equip = new Item();
 					
 					try {
 						Thread.sleep(1000);

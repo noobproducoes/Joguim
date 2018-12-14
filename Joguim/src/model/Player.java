@@ -37,13 +37,15 @@ public class Player {
 	private int bleedResist;
 	private int curseResist;
 	private ArrayList<Integer> quests = new ArrayList<Integer>();
-	// equipamento
-	private Equipment weapon;
-	private Equipment shield;
-	private Equipment armor;
-	private Equipment helm;
-	private Equipment legs;
-	private Equipment boot;
+	// EQUIPAMENTOS
+	private Item weapon;
+	private Item shield;
+	private Item armor;
+	private Item helm;
+	private Item legs;
+	private Item boots;
+	// INVENTÁRIO
+	private ArrayList<Item> inventory = new ArrayList<Item>();
 
 	public String getName() {
 		return name;
@@ -277,52 +279,60 @@ public class Player {
 		this.baseDefense = baseDefense;
 	}
 
-	public Equipment getWeapon() {
+	public Item getWeapon() {
 		return weapon;
 	}
 
-	public void setWeapon(Equipment weapon) {
+	public void setWeapon(Item weapon) {
 		this.weapon = weapon;
 	}
 
-	public Equipment getShield() {
+	public Item getShield() {
 		return shield;
 	}
 
-	public void setShield(Equipment shield) {
+	public void setShield(Item shield) {
 		this.shield = shield;
 	}
 
-	public Equipment getArmor() {
+	public Item getArmor() {
 		return armor;
 	}
 
-	public void setArmor(Equipment armor) {
+	public void setArmor(Item armor) {
 		this.armor = armor;
 	}
 
-	public Equipment getHelm() {
+	public Item getHelm() {
 		return helm;
 	}
 
-	public void setHelm(Equipment helm) {
+	public void setHelm(Item helm) {
 		this.helm = helm;
 	}
 
-	public Equipment getLegs() {
+	public Item getLegs() {
 		return legs;
 	}
 
-	public void setLegs(Equipment legs) {
+	public void setLegs(Item legs) {
 		this.legs = legs;
 	}
 
-	public Equipment getBoot() {
-		return boot;
+	public Item getBoots() {
+		return boots;
 	}
 
-	public void setBoot(Equipment boot) {
-		this.boot = boot;
+	public void setBoots(Item boot) {
+		this.boots = boot;
+	}
+
+	public ArrayList<Item> getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(ArrayList<Item> inventory) {
+		this.inventory = inventory;
 	}
 
 	public void rest(Player player) {
