@@ -111,8 +111,8 @@ public class Game {
 							player.setBaseDefense(20);
 							player.setEvasion(5);
 							player.setCriticalChance(10);
-							player.setWeapon(equip.addItem("Wooden sword","sword",100f ));
-							player.setShield(equip.addItem("Wooden Shield", "Shield", 5f, 1f, 1f, 1f, 1f, 1f, 1f, 1f));
+							player.setWeapon(equip.addItem("Wooden Sword", "Sword", 5));
+							player.setShield(equip.addItem("Wooden Shield", "Shield", 5, 1f, 1f, 1f, 1f, 1f, 1f, 1f));
 						//FIM TEMPORARIO
 						player.setFireResist(0);
 						player.setPoisonResist(0);

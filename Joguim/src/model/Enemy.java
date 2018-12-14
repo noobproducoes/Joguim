@@ -6,23 +6,23 @@ public class Enemy {
 	private int level;
 	private int exp;
 	// PROFILE STATUS
-	private float health;
-	private float maxHealth;
-	private float mana;
-	private float maxMana;
-	private float damage;
-	private float defense;
+	private int health;
+	private int maxHealth;
+	private int mana;
+	private int maxMana;
+	private int damage;
+	private int defense;
 	private int evasion;
 	private int criticalChance;
 	private String[] status = new String[6];
 	// RESISTÊNCIAS
-	private float fireResist;
-	private float poisonResist;
-	private float lightningResist;
-	private float iceResist;
-	private float physicalResist;
-	private float bleedResist;
-	private float curseResist;
+	private int fireResist;
+	private int poisonResist;
+	private int lightningResist;
+	private int iceResist;
+	private int physicalResist;
+	private int bleedResist;
+	private int curseResist;
 
 	public String getName() {
 		return name;
@@ -48,19 +48,19 @@ public class Enemy {
 		this.exp = exp;
 	}
 
-	public float getHealth() {
+	public int getHealth() {
 		return health;
 	}
 
-	public void setHealth(float health) {
+	public void setHealth(int health) {
 		this.health = health;
 	}
 
-	public float getMana() {
+	public int getMana() {
 		return mana;
 	}
 
-	public void setMana(float mana) {
+	public void setMana(int mana) {
 		this.mana = mana;
 	}
 
@@ -68,15 +68,15 @@ public class Enemy {
 		return damage;
 	}
 
-	public void setDamage(float damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 
-	public float getDefense() {
+	public int getDefense() {
 		return defense;
 	}
 
-	public void setDefense(float defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 	}
 
@@ -108,47 +108,47 @@ public class Enemy {
 		return fireResist;
 	}
 
-	public void setFireResist(float fireResist) {
+	public void setFireResist(int fireResist) {
 		this.fireResist = fireResist;
 	}
 
-	public float getPoisonResist() {
+	public int getPoisonResist() {
 		return poisonResist;
 	}
 
-	public void setPoisonResist(float poisonResist) {
+	public void setPoisonResist(int poisonResist) {
 		this.poisonResist = poisonResist;
 	}
 
-	public float getLightningResist() {
+	public int getLightningResist() {
 		return lightningResist;
 	}
 
-	public void setLightningResist(float lightningResist) {
+	public void setLightningResist(int lightningResist) {
 		this.lightningResist = lightningResist;
 	}
 
-	public float getIceResist() {
+	public int getIceResist() {
 		return iceResist;
 	}
 
-	public void setIceResist(float iceResist) {
+	public void setIceResist(int iceResist) {
 		this.iceResist = iceResist;
 	}
 
-	public float getPhysicalResist() {
+	public int getPhysicalResist() {
 		return physicalResist;
 	}
 
-	public void setPhysicalResist(float physicalResist) {
+	public void setPhysicalResist(int physicalResist) {
 		this.physicalResist = physicalResist;
 	}
 
-	public float getBleedResist() {
+	public int getBleedResist() {
 		return bleedResist;
 	}
 
-	public void setBleedResist(float bleedResist) {
+	public void setBleedResist(int bleedResist) {
 		this.bleedResist = bleedResist;
 	}
 
@@ -156,23 +156,23 @@ public class Enemy {
 		return curseResist;
 	}
 
-	public void setCurseResist(float curseResist) {
+	public void setCurseResist(int curseResist) {
 		this.curseResist = curseResist;
 	}
 	
-	public float getMaxHealth() {
+	public int getMaxHealth() {
 		return maxHealth;
 	}
 
-	public void setMaxHealth(float maxHealth) {
+	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 
-	public float getMaxMana() {
+	public int getMaxMana() {
 		return maxMana;
 	}
 
-	public void setMaxMana(float maxMana) {
+	public void setMaxMana(int maxMana) {
 		this.maxMana = maxMana;
 	}
 	
@@ -183,14 +183,16 @@ public class Enemy {
 		} else {
 			float crit = (float) Math.random();
 			if (crit <= (mob.getCriticalChance() / 100)) {
-				player.setHealth(player.getHealth() - ((mob.getDamage() * 2) - player.getDefense()));
+				float hp = player.getHealth() - ((mob.getDamage() * 2) - player.getDefense());
+				player.setHealth((int)hp);
 				System.out.print("Você tomou um dano critico!");
 				System.out.println("Você tomou " + ((mob.getDamage() * 2) - player.getDefense()) + " de dano.");
 			} else {
 				if ((mob.getDamage() - player.getDefense()) < 0) {
 					System.out.println("Você anulou o ataque!");
 				} else {
-	 				player.setHealth(player.getHealth() - (mob.getDamage() - player.getDefense()));
+					float hp = player.getHealth() - (mob.getDamage() - player.getDefense());
+	 				player.setHealth((int)hp);
 					System.out.println("Você tomou " + (mob.getDamage() - player.getDefense()) + " de dano.");
 				}
 			}

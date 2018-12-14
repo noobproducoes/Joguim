@@ -6,8 +6,8 @@ public class Equipment {
 	private String name;
 	private String type;
 	//PROFILE STATUS
-	private float damage;
-	private float defense;
+	private int damage;
+	private int defense;
 	// RESISTÊNCIAS
 	private float fireResist;
 	private float poisonResist;
@@ -35,16 +35,16 @@ public class Equipment {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public float getDamage() {
+	public int getDamage() {
 		return damage;
 	}
-	public void setDamage(float damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
 	}
-	public float getDefense() {
+	public int getDefense() {
 		return defense;
 	}
-	public void setDefense(float defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 	}
 	public float getFireResist() {
@@ -90,17 +90,17 @@ public class Equipment {
 		this.curseResist = curseResist;
 	}
 	
-	public Equipment addItem (String name, String type, float damage) {
+	public Equipment addItem (String name, String type, int damage) {
 		Equipment equip = new Equipment();
 		
-			this.name = name;
-			this.type = type;
-			this.damage = damage;
+		this.name = name;
+		this.type = type;
+		this.damage = damage;
 			
-		    return equip;
+		return equip;
 	}
 
-	public Equipment addItem (String name, String type, float defense, float fireResist, float poisonResist, float lightningResist, float iceResist, float physicalResist, float bleedResist, float curseResist) {
+	public Equipment addItem (String name, String type, int defense, float fireResist, float poisonResist, float lightningResist, float iceResist, float physicalResist, float bleedResist, float curseResist) {
 		Equipment equip = new Equipment();
 		
 		this.name = name;

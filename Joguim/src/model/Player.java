@@ -10,13 +10,13 @@ public class Player {
 	private String vocation;
 	private double gold;
 	// PROFILE STATUS
-	private float health;
-	private float maxHealth;
-	private float mana;
-	private float maxMana;
-	private float damage;
-	private float baseDefense;
-	private float defense;
+	private int health;
+	private int maxHealth;
+	private int mana;
+	private int maxMana;
+	private int damage;
+	private int baseDefense;
+	private int defense;
 	private int evasion;
 	private int criticalChance;
 	private String[] status = new String[6];
@@ -29,13 +29,13 @@ public class Player {
 	// SE FOR CLERIC
 	private int faith;
 	// RESISTÊNCIAS
-	private float fireResist;
-	private float poisonResist;
-	private float lightningResist;
-	private float iceResist;
-	private float physicalResist;
-	private float bleedResist;
-	private float curseResist;
+	private int fireResist;
+	private int poisonResist;
+	private int lightningResist;
+	private int iceResist;
+	private int physicalResist;
+	private int bleedResist;
+	private int curseResist;
 	private ArrayList<Integer> quests = new ArrayList<Integer>();
 	// equipamento
 	private Equipment weapon;
@@ -77,19 +77,19 @@ public class Player {
 		this.vocation = vocation;
 	}
 
-	public float getHealth() {
+	public int getHealth() {
 		return health;
 	}
 
-	public void setHealth(float health) {
+	public void setHealth(int health) {
 		this.health = health;
 	}
 
-	public float getMana() {
+	public int getMana() {
 		return mana;
 	}
 
-	public void setMana(float mana) {
+	public void setMana(int mana) {
 		this.mana = mana;
 	}
 
@@ -125,19 +125,19 @@ public class Player {
 		this.endurance = endurance;
 	}
 
-	public float getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 
-	public void setDamage(float damage) {
+	public void setDamage(int damage) {
 		this.damage = damage;
 	}
 
-	public float getDefense() {
+	public int getDefense() {
 		return defense;
 	}
 
-	public void setDefense(float defense) {
+	public void setDefense(int defense) {
 		this.defense = defense;
 	}
 
@@ -181,59 +181,59 @@ public class Player {
 		this.faith = faith;
 	}
 
-	public float getFireResist() {
+	public int getFireResist() {
 		return fireResist;
 	}
 
-	public void setFireResist(float fireResist) {
+	public void setFireResist(int fireResist) {
 		this.fireResist = fireResist;
 	}
 
-	public float getPoisonResist() {
+	public int getPoisonResist() {
 		return poisonResist;
 	}
 
-	public void setPoisonResist(float poisonResist) {
+	public void setPoisonResist(int poisonResist) {
 		this.poisonResist = poisonResist;
 	}
 
-	public float getLightningResist() {
+	public int getLightningResist() {
 		return lightningResist;
 	}
 
-	public void setLightningResist(float lightningResist) {
+	public void setLightningResist(int lightningResist) {
 		this.lightningResist = lightningResist;
 	}
 
-	public float getIceResist() {
+	public int getIceResist() {
 		return iceResist;
 	}
 
-	public void setIceResist(float iceResist) {
+	public void setIceResist(int iceResist) {
 		this.iceResist = iceResist;
 	}
 
-	public float getPhysicalResist() {
+	public int getPhysicalResist() {
 		return physicalResist;
 	}
 
-	public void setPhysicalResist(float physicalResist) {
+	public void setPhysicalResist(int physicalResist) {
 		this.physicalResist = physicalResist;
 	}
 
-	public float getBleedResist() {
+	public int getBleedResist() {
 		return bleedResist;
 	}
 
-	public void setBleedResist(float bleedResist) {
+	public void setBleedResist(int bleedResist) {
 		this.bleedResist = bleedResist;
 	}
 
-	public float getCurseResist() {
+	public int getCurseResist() {
 		return curseResist;
 	}
 
-	public void setCurseResist(float curseResist) {
+	public void setCurseResist(int curseResist) {
 		this.curseResist = curseResist;
 	}
 
@@ -245,19 +245,19 @@ public class Player {
 		this.quests = quests;
 	}
 
-	public float getMaxHealth() {
+	public int getMaxHealth() {
 		return maxHealth;
 	}
 
-	public void setMaxHealth(float maxHealth) {
+	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 
-	public float getMaxMana() {
+	public int getMaxMana() {
 		return maxMana;
 	}
 
-	public void setMaxMana(float maxMana) {
+	public void setMaxMana(int maxMana) {
 		this.maxMana = maxMana;
 	}
 
@@ -269,14 +269,13 @@ public class Player {
 		this.gold = gold;
 	}
 
-	public float getBaseDefense() {
+	public int getBaseDefense() {
 		return baseDefense;
 	}
 
-	public void setBaseDefense(float baseDefense) {
+	public void setBaseDefense(int baseDefense) {
 		this.baseDefense = baseDefense;
 	}
-
 
 	public Equipment getWeapon() {
 		return weapon;
@@ -346,7 +345,8 @@ public class Player {
 			}
 			return true;
 		} else {
-			player.setDefense(player.getDefense() - (player.getDefense() * 0.5f));
+			double defenseDebuff = player.getDefense() - (player.getDefense() * 0.5);
+			player.setDefense((int) defenseDebuff);
 			System.out.println("Você falhou em fugir e abriu sua guarda, perdendo 50% de sua defesa.");
 			try {
 				Thread.sleep(2000);
@@ -358,7 +358,7 @@ public class Player {
 	}
 
 	public void attack(Player player, Enemy mob) {
-		damagePlayer (player);
+		damagePlayer(player);
 		float dodge = (float) Math.random();
 		if (dodge == (mob.getEvasion() / 100)) {
 			System.out.println("O inimigo esquivou de seu ataque!");
@@ -376,17 +376,15 @@ public class Player {
 	}
 
 	public void damagePlayer(Player player) {
+		double newDamage = player.getStr() + player.getAgility() + player.getWeapon().getDamage();
 		if (player.getVocation().equals("Warrior")) {
-			player.setDamage((player.getStr() + player.getAgility() + player.getDamage() + player.getWeapon().getDamage()) / 3);
-
+			player.setDamage((int)newDamage / 3);
 		} else if (player.getVocation().equals("Archer")) {
-			player.setDamage((player.getStr() + player.getAgility()) / 3);
-
+			player.setDamage(player.getStr() + player.getAgility() + player.getWeapon().getDamage() / 3);
 		} else if (player.getVocation().equals("Mage")) {
-			player.setDamage((player.getIntelligence() + player.getAgility()) / 3);
-
+			player.setDamage(player.getIntelligence() + player.getAgility() + player.getWeapon().getDamage() / 3);
 		} else if (player.getVocation().equals("Cleric")) {
-			player.setDamage((player.getAgility() + player.getFaith()) / 3);
+			player.setDamage(player.getAgility() + player.getFaith() + player.getWeapon().getDamage() / 3);
 		}
 	}
 

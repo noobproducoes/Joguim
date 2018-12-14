@@ -66,7 +66,8 @@ public class Event {
 				}
 				turno++;
 			} else if (optCombate == 2) {
-				player.setDefense(player.getDefense() + (player.getDefense() * 0.4f));
+				double newDef = player.getDefense() + (player.getDefense() * 0.4);
+				player.setDefense((int)newDef);
 				try {
 					Thread.sleep(2000);
 				} catch (InterruptedException e) {
