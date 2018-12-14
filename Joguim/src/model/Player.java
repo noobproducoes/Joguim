@@ -338,8 +338,7 @@ public class Player {
 	public void rest(Player player) {
 		player.health = player.maxHealth;
 		player.mana = player.maxMana;
-		player.gold = player.gold - 10;
-
+		
 		System.out.println("Você está descansado.");
 	}
 

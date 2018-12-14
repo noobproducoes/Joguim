@@ -31,7 +31,8 @@ public class Util {
 		System.out.println("O que deseja fazer hoje, Sr. " + player.getName() + "?");
 		System.out.println("1 - Sair pra explorar.                 " + "2 - Descansar por 10g(Recupera HP/MANA).");
 		System.out.println("3 - Salvar progresso.                  " + "4 - Checar cartazes.");
-		System.out.println("5 - Loja.                              " + "6 - Sair do jogo.");
+		System.out.println("5 - Loja.                              " + "6 - Inventário.");
+		System.out.println("7 - Sair do jogo.");
 		System.out.print("Faça sua escolha: ");
 		try {
 			choice = scan.nextInt();
@@ -47,7 +48,7 @@ public class Util {
 				player.setHealth(player.getHealth() + potions.getHeal());
 				System.out.println("Você recuperou " + potions.getHeal() + " de vida.");
 				potions.setQtd(potions.getQtd() - 1);
-			} if (potions.getItemId() == 5 && potions.getRestoreMana() > 0) {
+			} if (potions.getItemId() == 6 && potions.getRestoreMana() > 0) {
 				player.setMana(player.getMana() + potions.getRestoreMana());
 				System.out.println("Você recuperou " + potions.getRestoreMana() + " de mana.");
 				potions.setQtd(potions.getQtd() - 1);

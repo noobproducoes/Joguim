@@ -313,7 +313,12 @@ public class Game {
 							}
 							
 						} else if (optTavern == 2) {
-							player.rest(player);
+							if (player.getGold() >= 10) {
+								player.setGold(player.getGold() - 10);
+								player.rest(player);
+							} else {
+								System.out.println("Você não possui gold suficiente.");
+							}
 						} else if (optTavern == 3) {
 							//SALVAR PROGRESSO
 							break;
@@ -327,15 +332,21 @@ public class Game {
 								
 								if (optLoja == 1) {
 									if (player.getGold() >= 50) {
+										Item potion = new Item();
 										player.setGold(player.getGold() - 50);
-										//ADICIONA 1 POÇÃO DE HP
+										player.getInventory().add(potion.addPotion(5, "Health Potion", "Potion", 50, 0, 1));
 										System.out.println("Você comprou Poção de Vida(1x).");
+									} else {
+										System.out.println("Você não possui gold suficiente.");
 									}
 								} else if (optLoja == 2) {
 									if (player.getGold() >= 35) {
+										Item potion = new Item();
 										player.setGold(player.getGold() - 35);
-										//ADICIONA 1 POÇÃO DE MANA
+										player.getInventory().add(potion.addPotion(6, "Mana Potion", "Potion", 0, 30, 1));
 										System.out.println("Você comprou Poção de Mana(1x).");
+									} else {
+										System.out.println("Você não possui gold suficiente.");
 									}
 								} else if (optLoja == 3) {
 									System.out.println("Volte sempre!");
@@ -345,6 +356,8 @@ public class Game {
 								}
 							}							
 						} else if (optTavern == 6) {
+							//CHAMA O MÉTODO DE ACESSO AO INVENTÁRIO
+						} else if (optTavern == 7){
 							System.out.println("Até logo!");
 							exit = true;
 							break;
